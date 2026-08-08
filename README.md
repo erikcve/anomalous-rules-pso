@@ -1,41 +1,30 @@
-# Mining Anomalous Similarity-Based Association Rules as Exceptions to Dominant Rules Using Particle Swarm Optimization
+# Reglas dominantes y anomalas con PSO
 
-Este proyecto documenta el descubrimiento de reglas de asociación anómalas basadas en similitud mediante el uso de Particle Swarm Optimization (PSO).
+Flujo reproducible para preparar el dataset cardiovascular, descubrir reglas dominantes y buscar reglas anomalas condicionadas.
 
-## Información General
-* **Autor**: Erik Fernando Casillas Velasco
-* **Institución**: Centro de Investigación Científica y de Educación Superior de Ensenada (CICESE), Unidad Académica Monterrey
-* **Curso**: Minería de Datos
-* **Fecha**: 6 de agosto de 2026
-* **Estado del Proyecto**: Artículo preliminar. La metodología dominante está confirmada, pero los resultados anómalos son preliminares y están pendientes de una ejecución canónica reproducible.
+## Orden de ejecucion
 
-## Síntesis del Proyecto
-El proyecto propone una metodología integrada para descubrir reglas dominantes y reglas anómalas en conjuntos de datos mixtos. Las reglas anómalas se definen como excepciones condicionadas respecto a las regularidades o reglas dominantes. El enfoque utiliza partículas mixtas dentro de un algoritmo PSO para representar tanto condiciones continuas como categóricas, evitando la discretización rígida.
+1. `notebooks/01_preparar_dataset.ipynb`
+2. `notebooks/02_pso_reglas_dominantes.ipynb`
+3. `notebooks/03_pso_reglas_anomalas.ipynb`
 
-## Metodología
-La arquitectura del método se organiza en tres etapas consecutivas:
+Los notebooks no dependen de Google Drive. Los artefactos intermedios se guardan en `artifacts/` y los resultados finales en `outputs/`.
 
-1. **Preparación del conjunto de datos**: 
-   * Se utiliza el Cardiovascular Disease Dataset con 70,000 observaciones. 
-   * Las variables categóricas conservan sus valores nominales. 
-   * Las variables continuas se procesan con un recorte (clipping) híbrido y normalización, usando cuantiles extremos y el intervalo intercuartílico.
-2. **Minería de reglas dominantes**: 
-   * Un primer PSO descubre reglas dominantes ($X \rightarrow Y$) utilizando criterios de soporte, confianza, lift, factor de certeza y complejidad. 
-   * Se emplean funciones de activación triangular y gaussiana truncada para evaluar la similitud en las variables continuas.
-3. **Minería condicionada de reglas anómalas**: 
-   * Para cada regla dominante, se fija el antecedente $X$. 
-   * Un segundo PSO optimiza condiciones adicionales $Z$ para buscar excepciones que conduzcan al consecuente opuesto, formando la estructura $X \wedge Z \rightarrow \neg Y$.
+El primer notebook descarga el dataset publico mediante `kagglehub`. El dataset y los resultados generados no deben subirse al repositorio si contienen datos o archivos pesados.
 
-## Configuración Experimental y Resultados
-* **Configuración Dominante**: Se emplearon 500 partículas y 50 iteraciones evaluadas sobre tres semillas distintas (55, 13, 33).
-* **Resultados Dominantes**: 
-   * Se encontraron 4,754 pBest (mejores posiciones personales) válidos. 
-   * Tras aplicar un filtro de redundancia mediante Jaccard difuso, se consolidaron 1,742 familias de reglas representativas. 
-   * De este grupo, 166 familias mostraron una alta estabilidad al aparecer en las tres semillas evaluadas.
-* **Resultados Anómalos (Preliminares)**: 
-   * En un barrido de validación, se encontraron 15 familias de excepciones para tres reglas dominantes seleccionadas. 
-   * Dos de estas familias de reglas anómalas conservaron su estabilidad en múltiples semillas con una confianza mínima de 0.70.
+## Dependencias
 
-## Limitaciones y Consideraciones Técnicas
-* **Problema de Reproducibilidad**: La celda de código correspondiente al barrido completo de reglas anómalas en el notebook contiene un error sintáctico (una cadena de texto sin cierre), lo que impide ejecutarlo linealmente en su estado actual. Los resultados anómalos descritos provienen únicamente de las salidas guardadas y requieren reejecución.
-* **Interpretación de Resultados**: Las masas equivalentes reportadas no son conteos exactos de pacientes. Las asociaciones encontradas funcionan como ejemplos exploratorios de la metodología técnica, por lo que no demuestran causalidad ni poseen validez clínica para inferencias médicas.
+```text
+numpy
+pandas
+joblib
+matplotlib
+kagglehub
+```
+
+Instalacion:
+
+```bash
+pip install -r requirements.txt
+```
+

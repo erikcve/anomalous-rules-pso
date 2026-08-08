@@ -1,0 +1,13 @@
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# Resultados generados localmente
+artifacts/*
+outputs/*
+
+# Datos descargados o preparados localmente
+data/*.csv
+data/*.zip
+data/*.pkl
+
