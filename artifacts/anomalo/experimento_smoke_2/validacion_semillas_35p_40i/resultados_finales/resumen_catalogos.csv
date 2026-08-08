@@ -1,0 +1,4 @@
+catalogo,familias,reglas_dominantes,confianza_promedio,confianza_maxima,soporte_promedio,masa_equivalente_promedio,fitness_promedio
+completo,1,1,0.6426371671249308,0.6426371671249308,0.0013074181628620822,2.6148363257241645,0.0013034080923175373
+estable_conf_60,0,0,,,,,
+estable_conf_70,0,0,,,,,
