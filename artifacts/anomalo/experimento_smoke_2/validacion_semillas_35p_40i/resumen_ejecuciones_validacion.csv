@@ -1,0 +1,2 @@
+regla_id_dominante,semilla,soporte_minimo,soporte_maximo_anomalo,estado,candidatas,gbest_fitness,gbest_soporte,gbest_confianza
+RD_0459,101,0.001,0.051,ejecutada,0,0.0005157106433255194,0.000607600832210342,0.7161390909840316
