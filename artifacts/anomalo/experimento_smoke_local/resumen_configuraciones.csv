@@ -1,0 +1,2 @@
+min_supp,min_conf,candidatas_pbest,reglas_dominantes_con_anomalia,reglas_dominantes_sin_anomalia
+0.001,0.6,3,3,29
